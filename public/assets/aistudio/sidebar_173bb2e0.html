@@ -1,0 +1,22 @@
+<div class="nk-sidebar" data-content="sidebarMenu">
+    <div class="nk-sidebar-inner" data-simplebar>
+        <ul class="nk-menu nk-menu-md">
+{% for it in menu.sidebar %}
+{% if it.heading %}
+            <li class="nk-menu-heading">
+                <h6 class="overline-title text-primary-alt">{{ it.heading }}</h6>
+            </li>
+{% else %}
+{% set here = (request.path == '/') if it.href == '/' else request.path.startswith(it.href) %}
+            <li class="nk-menu-item{% if here %} active current-page{% endif %}">
+                <a href="{{ it.href }}" class="nk-menu-link">
+                    <span class="nk-menu-icon"><em class="icon ni ni-{{ it.icon }}"></em></span>
+                    <span class="nk-menu-text">{{ it.text }}</span>{% if it.badge %}
+                    <span class="nk-menu-badge">{{ it.badge }}</span>{% endif %}
+                </a>
+            </li>
+{% endif %}
+{% endfor %}
+        </ul>
+    </div>
+</div>

@@ -1,0 +1,59 @@
+
+/* Scrum Board CSS*/
+
+/* Sprint bar */
+.sprint-bar{
+display:flex;
+align-items:center;
+justify-content:space-between;
+background: #fff;
+border: 1px solid #e2e8f0;
+border-radius: 14px;
+padding: 14px;
+margin-bottom: 14px;
+box-shadow: 0 4px 18px rgba(15, 23, 42, 0.04);
+gap: 12px;
+flex-wrap:wrap;
+}
+
+.sprint-info{
+display:flex;
+flex-direction:column;
+gap:4px;
+}
+
+.sprint-info strong{
+font-size: 14px;
+}
+
+.sprint-info span{
+font-size: 13px;
+color: #64748b;
+}
+
+.sprint-stats{
+display:flex;
+gap:10px;
+flex-wrap:wrap;
+}
+
+.stat{
+padding: 8px 12px;
+border-radius: 12px;
+background: #f8fafc;
+border: 1px solid #e2e8f0;
+font-size: 13px;
+font-weight: 700;
+color: #0f172a;
+display:flex;
+align-items:center;
+gap:8px;
+}
+
+.stat small{
+color: #64748b;
+font-weight: 700;
+}
+
+
+

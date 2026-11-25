@@ -1,0 +1,1 @@
+/* Custom scripts for the redesign. Loaded after the template scripts. */

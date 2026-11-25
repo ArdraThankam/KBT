@@ -1,0 +1,93 @@
+
+/* ========================================
+   08. EDITOR
+   ======================================== */
+.nk-editor {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    min-height: calc(100vh - (65px + 78px + 60px));
+}
+.nk-editor-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.125rem 1.5rem;
+    border-bottom: 1px solid #e5e9f2;
+}
+.nk-editor-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-grow: 1;
+}
+.nk-editor-tools { display: flex; align-items: center; }
+.nk-editor-main { display: flex; flex-wrap: wrap; flex-grow: 1; }
+.nk-editor-body {
+    flex-grow: 1;
+    font-family: "Nunito";
+    font-size: .875rem;
+    line-height: 1.4;
+    color: #556581;
+}
+.nk-editor-body table { border-collapse: collapse; }
+.nk-editor-body table td,
+.nk-editor-body table th { border: 1px solid #ccc; padding: .4rem; }
+.nk-editor-body figure { display: table; margin: 1rem auto; }
+.nk-editor-body figure figcaption {
+    display: block;
+    margin-top: .25rem;
+    color: #999;
+    text-align: center;
+}
+.nk-editor-body code {
+    padding: .1rem .2rem;
+    background-color: #e8e8e8;
+    border-radius: 3px;
+}
+.nk-editor-body h1, .nk-editor-body .h1 {
+    font-size: 2em;
+    font-weight: bold;
+    margin-block: .67em;
+    color: inherit !important;
+}
+.nk-editor-body h2, .nk-editor-body .h2 {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-block: .83em;
+    color: inherit !important;
+}
+.nk-editor-body h3, .nk-editor-body .h3 {
+    font-size: 1.17em;
+    font-weight: bold;
+    margin-block: 1em;
+    color: inherit !important;
+}
+.nk-editor-body p {
+    font-size: 1em;
+    margin-block: 1em;
+    color: inherit !important;
+}
+.nk-editor-style-clean + .tox-tinymce { border: none; }
+.nk-editor-full + .tox { min-height: 400px; height: 100% !important; }
+.nk-editor-base {
+    width: 100%;
+    border-bottom: 1px solid #e5e9f2;
+}
+
+@media (min-width: 1200px) {
+    .nk-editor-main { flex-direction: row-reverse; flex-wrap: nowrap; }
+    .nk-editor-base {
+        flex-shrink: 0;
+        width: 360px;
+        border-bottom: 0;
+        border-left: 1px solid #e5e9f2;
+    }
+    .nk-editor-title { justify-content: start; }
+}
+@media (max-width: 1199.98px) {
+    .nk-editor { min-height: calc(100vh - (65px + 78px + 30px)); }
+}
+@media (max-width: 575.98px) {
+    .nk-editor { min-height: calc(100vh - (65px + 116px + 30px)); }
+}

@@ -1,0 +1,108 @@
+
+ /*!
+ * Theme : Nia v1.0
+ * Content : Fonts
+ * Author: Alexz
+ * Copyright 2026
+ * Updated	 :	16.04.2026
+**/
+/*--.Dragula - kanban --*/
+
+.nk-kanban { overflow: auto; padding-bottom: 1rem; }
+
+.kanban-container { position: relative; box-sizing: border-box; width: auto; display: flex; margin-left: -14px; margin-right: -14px; overflow: auto; }
+
+.kanban-container * { box-sizing: border-box; }
+
+.kanban-board { padding: 14px; position: relative; transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1); flex-shrink: 0; }
+
+.kanban-board.disabled-board { opacity: 0.3; }
+
+.kanban-board.is-moving.gu-mirror { transform: rotate(3deg); }
+
+.kanban-board.is-moving.gu-mirror .kanban-drag { overflow: hidden; padding-right: 50px; }
+
+.kanban-board-header { background: #fff; border: 1px solid #e5e9f2; border-top: 3px solid #dbdfea; border-radius: 4px; padding: .5rem 1.25rem; margin-bottom: 1rem; }
+
+.kanban-primary { border-top-color: #6576ff; }
+
+.kanban-success { border-top-color: #1ee0ac; }
+
+.kanban-info { border-top-color: #09c2de; }
+
+.kanban-warning { border-top-color: #f4bd0e; }
+
+.kanban-danger { border-top-color: #e85347; }
+
+.kanban-title-content { display: flex; align-items: center; }
+
+.kanban-title-content .title { font-size: 0.9375rem; margin-bottom: 0; margin-right: 0.75rem; color: #526484; }
+
+.kanban-title-board { display: flex; align-items: center; justify-content: space-between; }
+
+.kanban-board header .kanban-title-button { float: right; }
+
+.kanban-board .kanban-drag { min-height: 100px; margin-bottom: 1rem; }
+
+.kanban-board .kanban-drag:empty { border-radius: 4px; border: 1px dashed #e5e9f2; }
+
+.kanban-board:after { clear: both; display: block; content: ""; }
+
+.kanban-item { border-radius: 4px; border: 1px solid #e5e9f2; padding: 1rem 1.25rem; margin-bottom: 0.75rem; background: #fff; transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1); }
+
+.kanban-item-title { display: flex; align-items: center; justify-content: space-between; }
+
+.kanban-item-title + .kanban-item-text { margin-top: .5rem; }
+
+.kanban-item-title .title { font-size: 0.9375rem; margin-bottom: 0; margin-right: 0.75rem; }
+
+.kanban-item-tags { display: flex; padding-top: 0.5rem; margin: -.125rem; }
+
+.kanban-item-tags li { padding: .125rem; }
+
+.kanban-item-meta { display: flex; align-items: flex-end; justify-content: space-between; padding-top: 0.5rem; }
+
+.kanban-item-meta-list { display: flex; align-items: center; flex-wrap: wrap; margin: 0 -.25rem; }
+
+.kanban-item-meta-list:last-child { flex-wrap: nowrap; }
+
+.kanban-item-meta-list:first-child { padding-right: 1rem; }
+
+.kanban-item-meta-list li { font-size: 0.8125rem; padding: 0 .25rem; color: #8094ae; }
+
+.kanban-item-meta-list li span { white-space: nowrap; }
+
+.kanban-item-meta-list li .icon + span { margin-left: 0.25rem; }
+
+.kanban-item:hover { cursor: move; }
+
+.kanban-item:last-child { margin: 0; }
+
+.kanban-item.is-moving.gu-mirror { transform: rotate(3deg); height: auto !important; }
+
+/* Dragula CSS  */
+.gu-mirror { position: fixed !important; margin: 0 !important; z-index: 9999 !important; }
+
+.gu-hide { display: none !important; }
+
+.gu-unselectable { -webkit-user-select: none !important; -moz-user-select: none !important; -ms-user-select: none !important; user-select: none !important; }
+
+.gu-transit { opacity: 0.2 !important; transform: rotate(0deg) !important; }
+
+.drag_handler { background: #fff; border-radius: 50%; width: 24px; height: 24px; position: relative; top: -3px; float: left; margin-right: 4px; }
+
+.drag_handler:hover { cursor: move; }
+
+.drag_handler_icon { position: relative; display: block; background: #000; width: 24px; height: 2px; top: 12px; transition: .5s ease-in-out; }
+
+.drag_handler_icon:before, .drag_handler_icon:after { background: #000; content: ''; display: block; width: 100%; height: 100%; position: absolute; transition: .5s ease-in-out; }
+
+.drag_handler_icon:before { top: 6px; }
+
+.drag_handler_icon:after { bottom: 6px; }
+
+.kanban-add-task { color: #6576ff; background: #fff; border: 1px dashed #e5e9f2; padding-top: 0.675rem; padding-bottom: 0.675rem; }
+
+.kanban-add-task:hover { color: #fff; background: #6576ff; border: 1px solid #6576ff; }
+
+.kanban-add-task:focus { outline: none; box-shadow: none; }

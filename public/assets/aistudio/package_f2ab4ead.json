@@ -1,0 +1,44 @@
+{
+  "name": "nia-ui",
+  "version": "1.0.0",
+  "description": "Nia UI Framework - Bootstrap 5 based admin dashboard theme",
+  "author": "Alexz",
+  "license": "MIT",
+  "keywords": [
+    "bootstrap",
+    "admin",
+    "dashboard",
+    "ui-kit",
+    "scss"
+  ],
+  "main": "dist/css/nia.css",
+  "style": "dist/css/nia.css",
+  "sass": "scss/nia.scss",
+  "files": [
+    "dist",
+    "scss"
+  ],
+  "scripts": {
+    "dev": "npm-run-all --parallel watch:*",
+    "build": "npm-run-all --parallel build:*",
+    "watch:sass": "sass --watch scss/nia.scss dist/css/nia.css --style expanded",
+    "watch:minify": "sass --watch scss/nia.scss dist/css/nia.min.css --style compressed",
+    "build:sass": "sass scss/nia.scss dist/css/nia.css --style expanded",
+    "build:minify": "sass scss/nia.scss dist/css/nia.min.css --style compressed",
+    "build:rtl": "rtlcss dist/css/nia.css dist/css/nia-rtl.css",
+    "postbuild": "npm run build:rtl"
+  },
+  "dependencies": {
+    "bootstrap": "^5.3.8"
+  },
+  "devDependencies": {
+    "sass": "^1.69.0",
+    "npm-run-all": "^4.1.5",
+    "rtlcss": "^4.1.0"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ]
+}

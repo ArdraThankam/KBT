@@ -1,0 +1,161 @@
+{
+  "apps": [
+    {
+      "href": "/",
+      "title": "Building Tax",
+      "icon": "coins"
+    },
+    {
+      "divider": true
+    },
+    {
+      "href": "offices",
+      "title": "Office",
+      "icon": "building"
+    },
+    {
+      "href": "employees",
+      "title": "Employees",
+      "icon": "users"
+    },
+    {
+      "href": "hr-worktime",
+      "title": "WorkTime",
+      "icon": "clock"
+    },
+    {
+      "href": "servicebook",
+      "title": "Service Book",
+      "icon": "book-read"
+    },
+    {
+      "href": "hr-transfer",
+      "title": "Transfer & Posting",
+      "icon": "user-list"
+    },
+    {
+      "href": "hr-promotion",
+      "title": "Promotion & Posting",
+      "icon": "user-list-fill"
+    },
+    {
+      "href": "hr-additional-charge",
+      "title": "Additional Charge",
+      "icon": "user-add"
+    },
+    {
+      "href": "hr-working-arrangement",
+      "title": "Working Arrangement",
+      "icon": "users"
+    },
+    {
+      "href": "hr-deployment",
+      "title": "Deployment",
+      "icon": "user-circle"
+    },
+    {
+      "href": "hr-deputation",
+      "title": "Deputation",
+      "icon": "user-c"
+    },
+    {
+      "divider": true
+    },
+    {
+      "href": "land-overview",
+      "title": "Land",
+      "icon": "map"
+    },
+    {
+      "href": "building-overview",
+      "title": "Building",
+      "icon": "building"
+    },
+    {
+      "href": "facility-overview",
+      "title": "Facility",
+      "icon": "view-grid-fill"
+    },
+    {
+      "href": "assets",
+      "title": "Assets",
+      "icon": "box"
+    },
+    {
+      "href": "inventory",
+      "title": "Inventory",
+      "icon": "package"
+    },
+    {
+      "href": "vehicles",
+      "title": "Vehicles",
+      "icon": "truck"
+    },
+    {
+      "divider": true
+    },
+    {
+      "href": "purchase",
+      "title": "Purchase",
+      "icon": "cart"
+    },
+    {
+      "href": "stores",
+      "title": "Stores",
+      "icon": "archived-fill"
+    },
+    {
+      "href": "logistics",
+      "title": "Logistics",
+      "icon": "exchange"
+    },
+    {
+      "href": "maintenance",
+      "title": "Repairs & Maintenance",
+      "icon": "setting"
+    },
+    {
+      "divider": true
+    },
+    {
+      "href": "budget",
+      "title": "Budget",
+      "icon": "coins"
+    },
+    {
+      "href": "finance",
+      "title": "Finance",
+      "icon": "money"
+    },
+    {
+      "href": "schemes-overview",
+      "title": "Schemes",
+      "icon": "layer"
+    },
+    {
+      "href": "services",
+      "title": "Services",
+      "icon": "layers-fill"
+    },
+    {
+      "href": "accounts",
+      "title": "Accounts",
+      "icon": "wallet-saving"
+    }
+  ],
+  "sidebar": [
+    {
+      "heading": "Building Tax"
+    },
+    {
+      "href": "/",
+      "icon": "dashboard",
+      "text": "Overview"
+    },
+    {
+      "href": "/applications",
+      "icon": "file-text",
+      "text": "Applications"
+    }
+  ]
+}

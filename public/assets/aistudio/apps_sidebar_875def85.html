@@ -1,0 +1,30 @@
+<div class="nk-apps-sidebar is-theme">
+    <div class="nk-apps-brand">
+        <a href="/" class="logo-link" title="Building Tax">
+            <span class="nk-menu-icon"><em class="icon ni ni-home"></em></span>
+        </a>
+    </div>
+    <div class="nk-sidebar-element">
+        <div class="nk-sidebar-body">
+            <div class="nk-sidebar-content" data-simplebar>
+                <div class="nk-sidebar-menu">
+                    <!-- Menu -->
+                    <ul class="nk-menu apps-menu">
+{% for it in menu.apps %}
+{% if it.divider %}
+                        <li class="nk-menu-hr"></li>
+{% else %}
+{% set href = it.href if it.href.startswith('/') else '/' ~ it.href %}
+                        <li class="nk-menu-item{% if href == '/' and request.path == '/' %} active{% endif %}">
+                            <a href="{{ href }}" class="nk-menu-link" title="{{ it.title }}">
+                                <span class="nk-menu-icon"><em class="icon ni ni-{{ it.icon }}"></em></span>
+                            </a>
+                        </li>
+{% endif %}
+{% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

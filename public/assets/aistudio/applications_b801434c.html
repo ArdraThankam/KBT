@@ -1,0 +1,144 @@
+{% extends "base.html" %}
+{% block title %}Applications · {{ site.title }}{% endblock %}
+{% block content %}
+<div class="nk-content nk-content-fluid">
+    <div class="container-xl wide-lg">
+        <div class="nk-content-body">
+            <div class="nk-block-head nk-block-head-sm">
+                <div class="nk-block-between">
+                    <div class="nk-block-head-content">
+                        <h3 class="nk-block-title page-title">Applications</h3>
+                        <div class="nk-block-des text-soft"><p>Building tax applications, newest first</p></div>
+                    </div>
+                </div>
+            </div>
+            <div class="nk-block">
+                <div class="card card-bordered">
+                    <div class="card-inner">
+                        <form method="get" action="/applications" id="filters">
+                            <div class="row g-3">
+                                <div class="col-md-6 col-lg-3">
+                                    <label class="form-label" for="district">District</label>
+                                    <select class="form-control" name="district" id="district">
+                                        <option value="">All districts</option>
+                                        {% for d in districts %}<option value="{{ d.id }}" {{ 'selected' if f.district == d.id }}>{{ d.name }}</option>{% endfor %}
+                                    </select>
+                                </div>
+                                <div class="col-md-6 col-lg-3">
+                                    <label class="form-label" for="taluk">Taluk</label>
+                                    <select class="form-control" name="taluk" id="taluk">
+                                        <option value="">All taluks</option>
+                                        {% for t in taluks %}<option value="{{ t.id }}" {{ 'selected' if f.taluk == t.id }}>{{ t.name }}</option>{% endfor %}
+                                    </select>
+                                </div>
+                                <div class="col-md-6 col-lg-3">
+                                    <label class="form-label" for="village">Village</label>
+                                    <select class="form-control" name="village" id="village">
+                                        <option value="">All villages</option>
+                                        {% for v in villages %}<option value="{{ v.id }}" {{ 'selected' if f.village == v.id }}>{{ v.name }}</option>{% endfor %}
+                                    </select>
+                                </div>
+                                <div class="col-md-6 col-lg-3">
+                                    <label class="form-label" for="q">Search</label>
+                                    <input class="form-control" type="text" name="q" id="q" value="{{ f.q }}" placeholder="Application no., name, survey no.">
+                                </div>
+                                <div class="col-md-6 col-lg-3">
+                                    <label class="form-label" for="status">Status</label>
+                                    <select class="form-control" name="status" id="status">
+                                        <option value="">Any status</option>
+                                        {% for c in statuses %}<option value="{{ c }}" {{ 'selected' if f.status == c }}>{{ label('status', c) }}</option>{% endfor %}
+                                    </select>
+                                </div>
+                                <div class="col-md-6 col-lg-3">
+                                    <label class="form-label" for="pointer">Stage</label>
+                                    <select class="form-control" name="pointer" id="pointer">
+                                        <option value="">Any stage</option>
+                                        {% for c in pointers %}<option value="{{ c }}" {{ 'selected' if f.pointer == c }}>{{ label('pointer', c) }}</option>{% endfor %}
+                                    </select>
+                                </div>
+                                <div class="col-md-6 col-lg-3 d-flex align-items-end">
+                                    <div>
+                                        <label class="me-3"><input type="checkbox" name="luxury" value="1" {{ 'checked' if f.luxury }}> Luxury only</label>
+                                        <label><input type="checkbox" name="deleted" value="1" {{ 'checked' if f.include_deleted }}> Include deleted</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-lg-3 d-flex align-items-end">
+                                    <button type="submit" class="btn btn-primary me-2"><span>Apply</span></button>
+                                    <a href="/applications" class="btn btn-outline-light"><span>Reset</span></a>
+                                </div>
+                            </div>
+                            {% if note %}<p class="text-warning mt-2 mb-0">{{ note }}</p>{% endif %}
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="nk-block">
+                <div class="card card-bordered card-full">
+                    <div class="nk-tb-list">
+                        <div class="nk-tb-item nk-tb-head">
+                            <div class="nk-tb-col"><span>Application</span></div>
+                            <div class="nk-tb-col"><span>Applicant</span></div>
+                            <div class="nk-tb-col tb-col-md"><span>Location</span></div>
+                            <div class="nk-tb-col tb-col-sm"><span>Area (sq m)</span></div>
+                            <div class="nk-tb-col tb-col-lg"><span>Status</span></div>
+                            <div class="nk-tb-col tb-col-lg"><span>Stage</span></div>
+                            <div class="nk-tb-col nk-tb-col-tools"><span>&nbsp;</span></div>
+                        </div>
+                        {% for r in rows %}
+                        <div class="nk-tb-item">
+                            <div class="nk-tb-col">
+                                <a href="/applications/{{ r.appln_id }}"><span class="tb-lead">{{ r.appln_no or r.appln_id }} / {{ r.appln_year }}</span></a>
+                                {% if r.appln_delete %}<span class="badge badge-dim bg-gray ms-1">deleted</span>{% endif %}
+                            </div>
+                            <div class="nk-tb-col"><span class="tb-lead">{{ r.appln_name or '—' }}</span></div>
+                            <div class="nk-tb-col tb-col-md">
+                                <span class="tb-lead">{{ r.vill_name or '—' }}</span>
+                                <span class="tb-sub">{{ r.taluk_name or '—' }}, {{ r.district_name or '—' }}</span>
+                            </div>
+                            <div class="nk-tb-col tb-col-sm">
+                                <span class="tb-lead">{{ fmt_area(r.area) }}</span>
+                                {% if r.area and r.area > threshold %}<span class="badge badge-dim bg-danger">Luxury</span>{% endif %}
+                            </div>
+                            <div class="nk-tb-col tb-col-lg"><span class="tb-sub">{{ label('status', r.appln_status) }}</span></div>
+                            <div class="nk-tb-col tb-col-lg"><span class="tb-sub">{{ label('pointer', r.appln_pointer) }}</span></div>
+                            <div class="nk-tb-col nk-tb-col-tools"><a href="/applications/{{ r.appln_id }}" class="btn btn-sm btn-outline-light"><span>View</span></a></div>
+                        </div>
+                        {% else %}
+                        <div class="nk-tb-item"><div class="nk-tb-col"><span class="tb-sub">No applications match these filters.</span></div></div>
+                        {% endfor %}
+                    </div>
+                    <div class="card-inner">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span class="text-soft">{% if rows %}Showing {{ offset + 1 }}–{{ offset + rows|length }}{% else %}&nbsp;{% endif %}</span>
+                            <div>
+                                {% if prev_url %}<a class="btn btn-outline-light me-2" href="{{ prev_url }}"><span>Previous</span></a>{% endif %}
+                                {% if next_url %}<a class="btn btn-outline-light" href="{{ next_url }}"><span>Next</span></a>{% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block scripts %}
+<script>
+(function () {
+  var d = document.getElementById('district'), t = document.getElementById('taluk'), v = document.getElementById('village');
+  function fill(sel, rows, all) {
+    sel.innerHTML = '<option value="">' + all + '</option>';
+    rows.forEach(function (r) { var o = document.createElement('option'); o.value = r.id; o.textContent = r.name; sel.appendChild(o); });
+  }
+  d.addEventListener('change', function () {
+    fill(v, [], 'All villages');
+    if (!d.value) { fill(t, [], 'All taluks'); return; }
+    fetch('/api/taluks?district=' + d.value).then(function (r) { return r.json(); }).then(function (rows) { fill(t, rows, 'All taluks'); });
+  });
+  t.addEventListener('change', function () {
+    if (!t.value) { fill(v, [], 'All villages'); return; }
+    fetch('/api/villages?taluk=' + t.value).then(function (r) { return r.json(); }).then(function (rows) { fill(v, rows, 'All villages'); });
+  });
+})();
+</script>
+{% endblock %}

@@ -1,0 +1,8 @@
+{
+  "name": "Remix KBT Feature Integrator",
+  "description": "An automated tool for senior engineers to add analytical modules and reporting features to the KBT tax system.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

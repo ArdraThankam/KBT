@@ -1,0 +1,39 @@
+
+ /*!
+ * Theme : Nia v1.0
+ * Content : Fonts
+ * Author: Alexz
+ * Copyright 2026
+ * Updated	 :	16.04.2026
+**/
+/** 06. PAGES */
+.nk-auth-body { padding: 1.25rem; }
+
+.nk-auth-footer { padding-bottom: 40px; }
+
+.nk-auth-body, .nk-auth-footer { width: 100%; max-width: 420px; margin-left: auto; margin-right: auto; }
+
+.nk-auth-footer { padding-left: 1.25rem; padding-right: 1.25rem; }
+
+.nk-auth-footer-full { margin-top: 0; }
+
+@media (min-width: 992px) { .nk-auth-container { width: 45%; } }
+
+@media (min-width: 1540px) { .nk-split .nk-auth-body, .nk-split .nk-auth-footer { margin-right: 90px; } }
+
+.nk-error-ld { padding: 2rem 1rem; }
+
+.nk-error-gfx { padding-bottom: 30px; max-width: 90%; }
+
+.nk-error-head { font-size: 160px; font-weight: 700; background: -webkit-linear-gradient(#6576ff, #2c3782); -webkit-background-clip: text; -webkit-text-fill-color: transparent; opacity: .9; }
+
+.nk-error-title { padding-bottom: 1rem; }
+
+.nk-error-text { font-size: 1rem; }
+
+@media (min-width: 576px) { .nk-error-lead { font-size: 200px; }
+  .nk-error-gfx { padding-bottom: 60px; max-width: 520px; } }
+
+.clipboard-success-message { position: absolute; top: 0; left: 0; right: 0; bottom: 0; display: flex; align-items: center; justify-content: center; color: #1ee0ac; background: rgba(255, 255, 255, 0.9); border-radius: 4px; opacity: 0; pointer-events: none; transition: opacity .3s; }
+
+.clipboard-success .clipboard-success-message { opacity: 1; }

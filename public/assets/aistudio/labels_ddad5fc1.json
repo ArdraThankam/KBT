@@ -1,0 +1,6 @@
+{
+  "_help": "Give the numeric codes in the database readable names, e.g. \"status\": { \"1\": \"Submitted\" }. Codes not listed are shown as 'Status 3', 'Stage 2' and so on.",
+  "status":  {},
+  "pointer": {},
+  "nature":  {}
+}

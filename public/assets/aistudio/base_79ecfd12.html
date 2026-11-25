@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="author" content="alex">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="Enterprise Platform" content="Single Window Solution for Revenue">
+    <!-- Fav Icon  -->
+    <link rel="#" href="#">
+
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="">
+
+    <!-- Page Title  -->
+    <title>{% block title %}{{ site.title }}{% endblock %}</title>
+    <!-- <title>Laravel</title> -->
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="{{ asset('css/style3.0.css') }}" >
+    <!-- <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}"> -->
+    <link rel="stylesheet" href="{{ asset('css/editors/summernote.css?ver=2.2.0') }}">
+    <!-- All font styles -->
+    <link rel="stylesheet" href="{{ asset('css/fonts/bootstrap-icons.css') }}" >
+    <link rel="stylesheet" href="{{ asset('css/fonts/fontawesome-icons.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/fonts/themify-icons.css') }}" >
+    <link href="{{ asset('font-awesome/css/font-awesome.css') }}">
+
+    <!-- This file is for you to include your own styles -->
+    <link rel="stylesheet" href="{{ asset('css/skins/theme.css') }}">
+    <!-- Premade Skin style -->
+    <link  rel="stylesheet" href="{{ asset('css/skins/theme-egyptian.css') }}">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="{{ asset('css/enterprise/enterprise.css?v=1.0.54') }}">
+    <!-- Your own styles (edit this file for the redesign) -->
+    <link rel="stylesheet" href="{{ asset('css/custom/app.css') }}">
+    {% block head %}{% endblock %}
+</head>
+<body class="nk-body npc-apps has-apps-sidebar">
+    <div class="nk-app-root">
+        {% include "partials/apps_sidebar.html" %}        <!-- main @s -->
+        <div class="nk-main ">
+            <!-- wrap @s -->
+            <div class="nk-wrap ">
+                <!-- main header @s -->
+                <input type="hidden" name="_token" value="">{% include "partials/header.html" %}
+                <!-- main header @e -->
+
+                {% include "partials/sidebar.html" %}{% block content %}{% endblock %}
+
+
+            </div>
+            <!-- wrap @e -->
+        </div>
+        <!-- main @e -->
+    </div>
+    <!-- app-root @e -->
+    <!-- JavaScript -->
+    <script src="{{ asset('js/bundle.js?ver=2.2.0') }}"></script>
+    <script src="{{ asset('js/scripts.js?ver=2.2.0') }}"></script>
+    <script src="{{ asset('js/libs/editors/summernote.js?ver=2.2.0') }}"></script>
+    <script src="{{ asset('js/editors.js?ver=2.2.0') }}"></script>
+
+    <script src="{{ asset('js/custom/app.js') }}"></script>
+    {% block scripts %}{% endblock %}
+</body>
+</html>
+
+

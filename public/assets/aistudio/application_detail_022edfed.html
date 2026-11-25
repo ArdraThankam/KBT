@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block title %}Application {{ a.appln_no }} / {{ a.appln_year }} · {{ site.title }}{% endblock %}
+{% macro card(section) %}
+<div class="card card-bordered mb-3">
+    <div class="card-inner border-bottom"><h6 class="title mb-0">{{ section.title }}</h6></div>
+    <ul class="list-group list-group-flush">
+        {% for name, value in section.rows %}
+        <li class="list-group-item d-flex justify-content-between"><span class="text-soft">{{ name }}</span><span class="text-end ms-3">{{ value }}</span></li>
+        {% endfor %}
+    </ul>
+</div>
+{% endmacro %}
+{% block content %}
+<div class="nk-content nk-content-fluid">
+    <div class="container-xl wide-lg">
+        <div class="nk-content-body">
+            <div class="nk-block-head nk-block-head-sm">
+                <div class="nk-block-between">
+                    <div class="nk-block-head-content">
+                        <h3 class="nk-block-title page-title">Application {{ a.appln_no or a.appln_id }} / {{ a.appln_year }}
+                            {% if plinth.is_luxury %}<span class="badge badge-dim bg-danger ms-2">Luxury</span>{% endif %}
+                            {% if a.appln_delete %}<span class="badge badge-dim bg-gray ms-2">deleted</span>{% endif %}</h3>
+                        <div class="nk-block-des text-soft"><p>{{ a.vill_name or '—' }}, {{ a.taluk_name or '—' }}, {{ a.district_name or '—' }}</p></div>
+                    </div>
+                    <div class="nk-block-head-content"><a href="javascript:history.back()" class="btn btn-outline-light"><span>Back</span></a></div>
+                </div>
+            </div>
+            <div class="nk-block">
+                <div class="row g-gs">
+                    <div class="col-lg-6">
+                        {{ card(sections[0]) }}{{ card(sections[1]) }}{{ card(sections[2]) }}
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="card card-bordered mb-3">
+                            <div class="card-inner border-bottom"><h6 class="title mb-0">Plinth area (sq m)</h6></div>
+                            <div class="card-inner">
+                                <table class="table table-sm mb-2">
+                                    <thead><tr><th></th><th class="text-end">Residential</th><th class="text-end">Other</th></tr></thead>
+                                    <tbody>{% for name, res, other in plinth.table %}<tr><td>{{ name }}</td><td class="text-end">{{ res }}</td><td class="text-end">{{ other }}</td></tr>{% endfor %}</tbody>
+                                </table>
+                                {% for name, value in plinth.totals %}<div class="d-flex justify-content-between"><span class="text-soft">{{ name }}</span><span>{{ value }}</span></div>{% endfor %}
+                                <hr>
+                                <div class="d-flex justify-content-between"><span class="text-soft">Area used for the luxury rule</span><strong>{{ plinth.luxury_area }}</strong></div>
+                                <p class="text-soft small mb-0 mt-1">Rule: sum of {{ luxury_columns }} above {{ threshold|int }} sq m (change in .env).</p>
+                            </div>
+                        </div>
+                        {{ card(sections[3]) }}{{ card(sections[4]) }}{{ card(sections[5]) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

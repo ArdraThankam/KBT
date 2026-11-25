@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+{% block title %}Building Tax Overview · {{ site.title }}{% endblock %}
+{% macro widget(title, big, unit, rows) %}
+<div class="col-md-6 col-lg-4">
+    <div class="card card-bordered h-100">
+        <div class="nk-wgw">
+            <div class="nk-wgw-inner">
+                <a class="nk-wgw-name" href="#">
+                    <div class="nk-wgw-icon is-default"><em class="icon ni ni-building"></em></div>
+                    <h5 class="nk-wgw-title title">{{ title }}</h5>
+                </a>
+                <div class="nk-wgw-balance">
+                    <div class="amount">{{ big }} <span class="amount-sm"> {{ unit }}</span></div>
+                </div>
+            </div>
+        </div>
+        <ul class="list-group list-group-flush">
+            {% for label_, value in rows %}
+            <li class="list-group-item"><div class="amount">{{ label_ }} : <span class="float-right amount">{{ value }}</span></div></li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+{% endmacro %}
+{% macro breakdown(title, rows, with_lux=False) %}
+<div class="nk-block">
+    <div class="card card-bordered card-full">
+        <div class="card-inner border-bottom">
+            <div class="card-title-group"><div class="card-title"><h6 class="title">{{ title }}</h6></div></div>
+        </div>
+        <div class="nk-tb-list">
+            <div class="nk-tb-item nk-tb-head">
+                <div class="nk-tb-col"><span>Name</span></div>
+                <div class="nk-tb-col"><span>Applications</span></div>
+                {% if with_lux %}<div class="nk-tb-col tb-col-sm"><span>Luxury (&gt; {{ threshold|int }} sq m)</span></div>{% endif %}
+                <div class="nk-tb-col tb-col-md" style="min-width:140px"><span>Share</span></div>
+            </div>
+            {% for r in rows %}
+            <div class="nk-tb-item">
+                <div class="nk-tb-col"><span class="tb-lead">{{ r.name }}</span></div>
+                <div class="nk-tb-col"><span class="tb-lead">{{ fmt_int(r.n) }}</span></div>
+                {% if with_lux %}<div class="nk-tb-col tb-col-sm"><span class="tb-sub">{{ fmt_int(r.lux) }}</span></div>{% endif %}
+                <div class="nk-tb-col tb-col-md">
+                    <div class="progress progress-sm"><div class="progress-bar" style="width: {{ '%.1f'|format(r.pct) }}%"></div></div>
+                    <span class="tb-sub">{{ '%.1f'|format(r.pct) }}%</span>
+                </div>
+            </div>
+            {% else %}
+            <div class="nk-tb-item"><div class="nk-tb-col"><span class="tb-sub">No data</span></div></div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endmacro %}
+{% block content %}
+<div class="nk-content nk-content-fluid">
+    <div class="container-xl wide-lg">
+        <div class="nk-content-body">
+            <div class="nk-block-head nk-block-head-sm">
+                <div class="nk-block-between">
+                    <div class="nk-block-head-content">
+                        <h3 class="nk-block-title page-title">Overview</h3>
+                        <div class="nk-block-des text-soft">
+                            <p>Overview of building tax applications &middot; updated {{ ov.generated.strftime('%d %b %Y, %H:%M') }}
+                               &middot; <a href="/?refresh=1">refresh</a></p>
+                        </div>
+                    </div>
+                    <div class="nk-block-head-content">
+                        <a href="/applications" class="btn btn-primary"><span>View applications</span></a>
+                    </div>
+                </div>
+            </div>
+            <div class="nk-block">
+                <div class="row g-gs">
+                    {{ widget("Applications", fmt_int(ov.active), "Nos.", [
+                        ("Total in database", fmt_int(ov.total)),
+                        ("Active", fmt_int(ov.active)),
+                        ("Marked deleted", fmt_int(ov.deleted))]) }}
+                    {{ widget("Luxury", fmt_int(ov.luxury), "Nos.", [
+                        ("Above " ~ (threshold|int) ~ " sq m", fmt_int(ov.luxury)),
+                        ("Up to " ~ (threshold|int) ~ " sq m", fmt_int(ov.other)),
+                        ("Share of active", ('%.1f'|format(100 * ov.luxury / ov.active) ~ '%') if ov.active else '—')]) }}
+                    {{ widget("Locations", fmt_int(ov.loc.villages), "Villages", [
+                        ("Districts", fmt_int(ov.loc.districts)),
+                        ("Taluks", fmt_int(ov.loc.taluks)),
+                        ("Villages", fmt_int(ov.loc.villages))]) }}
+                </div>
+            </div>
+            {{ breakdown("By district (active applications)", ov.districts, True) }}
+            <div class="row g-gs">
+                <div class="col-lg-6">{{ breakdown("By status", ov.statuses) }}</div>
+                <div class="col-lg-6">{{ breakdown("By stage (pointer)", ov.pointers) }}</div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
